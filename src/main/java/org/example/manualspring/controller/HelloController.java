@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.UnsupportedEncodingException;
 
 @Controller // controller -> component
-@RequestMapping("/hello") // -> 주소에 접근
+//@RequestMapping("/hello") // -> 주소에 접근
+@RequestMapping("/") // -> 주소에 접근
 public class HelloController {
     private final IHelloService helloService;
     public HelloController(HelloService helloService) {
