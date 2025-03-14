@@ -20,11 +20,5 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
-
-        // UTF-8 필터 등록
-        FilterRegistration.Dynamic encodingFilter =
-                servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
-        encodingFilter.setInitParameter("encoding", "UTF-8");
-        encodingFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
     }
 }

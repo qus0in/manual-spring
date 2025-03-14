@@ -1,11 +1,15 @@
 package org.example.manualspring.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.example.manualspring.service.HelloService;
 import org.example.manualspring.service.IHelloService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.UnsupportedEncodingException;
 
 @Controller // controller -> component
 @RequestMapping("/hello") // -> 주소에 접근
@@ -24,8 +28,14 @@ public class HelloController {
     @RequestMapping("/greet")
     @ResponseBody
 //    public String getHello(@RequestParam(name = "name") String name) {
-    public String getHello(@RequestParam(name = "name") String name) {
+    public String getHello(@RequestParam(name = "name") String name,
+                           HttpServletRequest request,
+                           HttpServletResponse response) throws UnsupportedEncodingException {
         System.out.println(name);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        // 해결 :)
+        response.setContentType("text/html;charset=UTF-8");
         return helloService.greet("Hello My name is %s".formatted(name));
     }
 }
