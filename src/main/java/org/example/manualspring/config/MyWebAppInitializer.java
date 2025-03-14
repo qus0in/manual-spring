@@ -1,6 +1,7 @@
 package org.example.manualspring.config;
 
 import jakarta.servlet.*;
+import org.example.manualspring.filter.EncodingFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -20,5 +21,12 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
+
+        // EncodingFilter 등록
+        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter(
+                "encodingFilter",
+                new EncodingFilter()
+        );
+        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
     }
 }

@@ -32,9 +32,9 @@ public class HelloController {
                            HttpServletRequest request,
                            HttpServletResponse response) throws UnsupportedEncodingException {
         // 해결 :)
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("text/html;charset=UTF-8");
         // 자 이걸 필터로 하면 되는데...(?) 부트는 알아서 잘해주는데... 이런...
         return helloService.greet("Hello My name is %s".formatted(name));
     }
